@@ -1,0 +1,50 @@
+<div class="container mx-auto p-4">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Calcula tu Ruta</h1>
+      <p class="text-lg text-gray-600 mb-4">Haz clic en el mapa para seleccionar el punto de llegada. Tu ubicación actual es el punto de salida.</p>
+    </div>
+  
+    <!-- Contenedor de controles y detalles -->
+    <div class="controls flex flex-col sm:flex-row justify-center items-center w-full mb-6 gap-6">
+      <!-- Modo de transporte -->
+      <div class="mode-card bg-white p-4 rounded-lg shadow-md flex flex-col justify-center items-center text-center">
+        <p class="text-sm font-medium text-gray-600 mb-2">Modo de Transporte</p>
+        <select [(ngModel)]="mode" (change)="changeMode(mode)" class="p-2 border border-gray-300 rounded-md w-full mb-4">
+          <option value="driving">🚗 Conducción</option>
+          <option value="walking">🚶 Caminando</option>
+          <option value="cycling">🚴 Ciclismo</option>
+          <option value="transit">🚌 Transporte Público</option>
+        </select>
+  
+        <!-- Selector de tipo de mapa -->
+        <p class="text-sm font-medium text-gray-600 mb-2">Tipo de Mapa</p>
+        <select [(ngModel)]="mapStyle" (change)="changeMapStyle(mapStyle)" class="p-2 border border-gray-300 rounded-md w-full">
+          <option value="mapbox://styles/mapbox/streets-v11">Mapa de Calles</option>
+          <option value="mapbox://styles/mapbox/satellite-v9">Satélite</option>
+          <option value="mapbox://styles/mapbox/satellite-streets-v11">Híbrido</option>
+          <option value="mapbox://styles/mapbox/outdoors-v11">Aire Libre</option>
+          <option value="mapbox://styles/mapbox/dark-v10">Modo Oscuro</option>
+          <option value="mapbox://styles/mapbox/light-v10">Modo Claro</option>
+        </select>
+      </div>
+  
+      <!-- Información de ruta -->
+      <div class="info-card bg-white p-4 rounded-lg shadow-md flex flex-col justify-center items-center text-center">
+        <p class="text-sm font-medium text-gray-600 mb-2">Tu Ubicación</p>
+        <p class="text-base font-semibold text-green-500 mb-4">{{ startPoint ? startPoint.join(', ') : 'Obteniendo ubicación...' }}</p>
+  
+        <p class="text-sm font-medium text-gray-600 mb-2">Destino</p>
+        <p class="text-base font-semibold text-red-500 mb-4">{{ endPoint ? endPoint.join(', ') : 'Seleccione un punto en el mapa' }}</p>
+  
+        <p class="text-sm font-medium text-gray-600 mb-2">Distancia Total</p>
+        <p class="text-base font-semibold text-blue-500 mb-2">{{ distance }}</p>
+  
+        <p class="text-sm font-medium text-gray-600 mb-2">Tiempo Estimado</p>
+        <p class="text-base font-semibold text-purple-500">{{ duration }}</p>
+      </div>
+    </div>
+  
+    <!-- Contenedor del mapa -->
+    <div id="map" class="map-container w-full h-[50vh] md:h-[70vh] rounded-lg shadow-lg border border-gray-300"></div>
+  </div>
+  
