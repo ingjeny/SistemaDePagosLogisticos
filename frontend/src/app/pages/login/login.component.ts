@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'crc-login',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule], 
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-
-}
+export class LoginComponent {}
